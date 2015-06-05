@@ -1,0 +1,1 @@
+(function(){var e,o,t;t=document.querySelector(".landing"),e=document.querySelector(".features"),o=document.querySelector(".install"),window.onscroll=function(){var l;return l=1-window.pageYOffset/700*window.pageYOffset/700,t.style.opacity=l,0>l?(e.style.color="#6EAEF9",o.style.background="#6EAEF9"):(e.style.color="#555",o.style.background="#fff")}}).call(this);

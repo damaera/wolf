@@ -1,0 +1,114 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link href='http://fonts.googleapis.com/css?family=Raleway:800,400' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<a href="https://github.com/damaera/wolf"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 9999;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
+<div class="landing">
+  <img src="wolf.svg" alt="wolf, very cool grid system">
+  <h1>wolf</h1>
+  <h2>Very Cool Responsive SASS Grid System</h2>
+</div>
+<div class="features">
+  <h1>Features</h1>
+
+  <div class="item">
+    <h2>Cleaner HTML Syntax</h2>
+    <p> In traditional CSS Framework, Almost all styled in classes. More classes make your HTML dirty. Don't make your HTML look like rubbish.</p>
+  </div>
+  <div class="item">
+    <h2>Completely Custom Grid</h2>
+    <p>In traditional CSS Framework, grid cannot be customized. Customize wolf with your own ratio, gutter and many more.</p>
+  </div>
+  <div class="item">
+    <h2>Awesome ratio</h2>
+    <p>You can use float decimal or fraction, but dont use percentage.</p>
+  </div>
+  <div class="item">
+    <h2>Simple Adaptive Breakpoint</h2>
+    <p>Responsive, for different screen size. This can be customized too.</p>
+  </div>
+</div>
+<div class="install">
+<h1>Install</h1>
+  <ol>
+    <li>1. Make sure you have <a href="http://sass-lang.com/">SASS</a></li>
+    <li>2. Download code <a href="https://github.com/damaera/wolf/archive/master.zip">here</a>, and copy at your project</li>
+    <li>3. Import in your code.<code>@import 'wolf-master/index'</code></li>
+  </ol>
+</div>
+<div class="api">
+  <div class="wrapper">
+    <h1>Usage</h1>
+    <h2>Create HTML</h2>
+    <p>In common CSS framework, HTML look like shit. full of unnecessary classes. but in wolf, create your own semantic html with cleaner syntax and make it readable.</p>
+    <p>here, <b>section</b> is a container and <b>div</b> is item from container. Lets make grid with 3 column.</p>
+<code><pre>
+&lt;section&gt;
+  &lt;div&gt;item 1&lt;/div&gt;
+  &lt;div&gt;item 2&lt;/div&gt;
+  &lt;div&gt;item 3&lt;/div&gt;
+&lt;/section&gt;
+</pre></code>
+
+    <h2>Row and Col</h2>
+
+    <p>Give <b>section</b> a <code>row()</code> mixin and <b>div</b> a <code>col()</code> mixin.</p>
+<code><pre>
+section {
+  @include row()
+  > div {
+    @include col(1/3, $break-at: 3)
+  }
+}
+</pre></code>
+    <p><code>row()</code> can be customized. You can set the value of <b>max-width</b> and <b>padding</b> or deciding the element are <b>center</b>ed or not</p>
+    <p>This is <code>row()</code> mixin with its default value</p>
+
+    <div class="note">row($max-width: 1200px, $padding: 30px, $center: true)</div>
+    <p><code>col()</code> are very cool. Its has <b>ratio</b>?. <b>ratio</b> are how many width of the element, relative to parent element. Its accept fraction (like 1/3) and decimal (like 0.25) but not percentage. Beetween one <code>col()</code> and another col() are divided by <b>gutter</b>.</p>
+    <p>But how if you have 9 <code>col()</code> and want to make it 1/3 fraction but don't want to specify a row every 3 col?. Here is <b>break-at</b>. Its make <code>col()</code> break smoothly at N.</p>
+    <p>Last parameter are <b>offset</b>. it make <code>col()</code> offseting in <b>ratio</b> value. Its also can accept decimal and fraction, just same with <b>ratio</b></p>
+
+    <p>Here is <code>col()</code> mixin with its default value</p>
+    <div class="note">col($ratio: 1, $gutter : 1.2 , $break-at: 0, $offset: 0)</div>
+
+    <h2>clearfix</h2>
+    <p>This is Nicholas Gallagher's clearfix. This can used for replacing row. This is like <code>row()</code> without parameter. </p>
+    <div class="note">clearfix()</div>
+
+    <h2>Breakpoint</h2>
+    <p>This is for Responsive Design purpose. This use @media screen css.</p>
+    <div class="note">screen-min($min)</div>
+    <div class="note">screen-max($max)</div>
+    <div class="note">screen-between($min, $max)</div>
+    <p>example</p>
+<code><pre>
+// just variable
+$mobile-breakpoint : 768px;
+
+section {
+  @include row()
+  > div {
+    @include screen-min($mobile-breakpoint){
+      @include col(1/3, $break-at: 3)
+    }
+    @include screen-max($mobile-breakpoint){
+      @include col(1)
+    }
+  }
+}
+</pre></code>
+
+    <h2>Edit Mode</h2>
+    <p>This make all element has clear view. by adding thin red transparent color to all element.</p>
+    <div class="note">edit-mode()</div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
