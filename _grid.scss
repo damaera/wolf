@@ -1,0 +1,75 @@
+/**
+ * default variable
+ */
+$col-gutter: 1.2 !default;
+
+$row-center: true !default;
+$row-padding: 30px !default;
+$row-max-width: 1200px !default;
+
+
+/**
+ * for getting width from ratio with gutter
+ */
+@function get-width($ratio, $gtr) {
+  $width: 100% * $ratio - $gtr + $ratio * $gtr;
+  @return $width;
+}
+
+/**
+ * for getting offset width
+ */
+@function get-offset-width($ratio, $gtr) {
+  $offset-width: 100% * $ratio + $ratio * $gtr;
+  @return $offset-width;
+}
+
+/**
+ * clearing float
+ */
+@mixin clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: '';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/**
+ * column
+ */
+@mixin col($ratio: 1, $gutter : $col-gutter , $break-at: 0, $offset: 0){
+  width: get-width($ratio, $gutter);
+  margin-right: $col-gutter * 1%;
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  &:last-child {
+    margin-right: 0;
+  }
+  @if $offset != 0 {
+    margin-left: get-offset-width($offset, $gutter);
+  }
+  @if $break-at != 0 {
+    &:nth-of-type(#{$break-at}n) {
+      margin-right: 0;
+    }
+  }
+}
+/**
+ * container for col()
+ */
+@mixin row($max-width: $row-max-width, $padding: $row-padding, $center: $row-center){
+  @include clearfix;
+  display: block;
+  max-width: 100%;
+  box-sizing: border-box;
+  width: $max-width;
+  padding: $padding;
+  @if $center == true {
+    margin: 0 auto;
+  }
+}
